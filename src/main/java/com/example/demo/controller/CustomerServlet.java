@@ -32,9 +32,25 @@ public class CustomerServlet extends HttpServlet {
                 break;
             case "view":
                 viewDetail(request, response);
+                break;
+            case "search":
+                seach(request, response);
+                break;
             default:
                 viewCustomers(request, response);
                 break;
+        }
+    }
+
+    private void seach(HttpServletRequest request, HttpServletResponse response) {
+        String name = request.getParameter("searchName");
+        List<Customer> customers = customerService.findByName(name);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("customer/list.jsp");
+        request.setAttribute("customers", customers);
+        try {
+            requestDispatcher.forward(request, response);
+        } catch (IOException | ServletException e) {
+            e.printStackTrace();
         }
     }
 

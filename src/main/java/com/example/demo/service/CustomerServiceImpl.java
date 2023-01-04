@@ -38,7 +38,7 @@ public class CustomerServiceImpl implements CustomerService{
         List<Customer> tempList = new ArrayList<>();
         for (Customer c:
              customerList.values()) {
-            if (c.getName().equals(name)) {
+            if (c.getName().contains(name)) {
                 tempList.add(c);
             }
         }

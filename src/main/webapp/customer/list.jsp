@@ -12,6 +12,11 @@
     <title>Customers List</title>
 </head>
 <body>
+<form method="get" action="/customers">
+    <input type="hidden" name="action" value="search">
+    <input type="text" name="searchName" placeholder="searchByName">
+    <input type="submit" value="search">
+</form>
 <a href="/customers?action=create">Create new customer</a>
 <c:if test="${requestScope['message']!=null}">
     <p>${requestScope['message']} </p>
@@ -37,7 +42,7 @@
     <c:forEach items='${requestScope["customers"]}' var="customer">
         <tr>
             <td>
-              <a href="/customers?action=view&id=${customer.getId()}" > ${customer.getId()}</a>
+                <a href="/customers?action=view&id=${customer.getId()}"> ${customer.getId()}</a>
             </td>
             <td>
                     ${customer.getName()}
